@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - MATHS</title>
+        {% else %}
+        <title>Welcome to MATHS</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            MATHS:  <! -- this is the header on the login page -->
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
