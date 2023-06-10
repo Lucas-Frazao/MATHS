@@ -1,15 +1,16 @@
-<!doctype html>
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - MATHS</title>
+        <title>{{ title }} - microblog</title>
         {% else %}
-        <title>Welcome to MATHS</title>
+        <title>microblog</title>
         {% endif %}
     </head>
     <body>
         <div>
-            MATHS:  <! -- this is the header on the login page -->
+            Microblog:
+            <a href="/index">Home</a>
+            <a href="/login">Login</a>
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}
@@ -21,6 +22,6 @@
         </ul>
         {% endif %}
         {% endwith %}
-        {% block content %}{% end-block %}
+        {% block content %}{% endblock %}
     </body>
 </html>
