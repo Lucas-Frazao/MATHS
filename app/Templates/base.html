@@ -1,31 +1,21 @@
 <html>
     <head>
         <style>
-            html, body
-                {
+        .text-container
+        {
+            margin: 190px;
+            padding: 20px;
+            vertical-align: center;
+            text-align: center;
+            float: left;
+            position: relative;
+            top: -200px;
+            left: -200px;
 
-                height: 100%;
-                margin: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                }
+        }
+        </style>
 
-                .custom-container
-                {
-                    position: relative;
-                    width: 100%;
-                    height: 100vh;
-                }
 
-                .centered-text
-                {
-                    position: absolute;
-                    top: 20%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                }
-         </style>
 
         {% if title %}
         <title>{{ title }} - MATHS</title>
@@ -34,15 +24,19 @@
         {% endif %}
     </head>
     <body>
-        <div>
-
+        <div class="text-container">
+             MATHS:
+            <a href="{{ url_for('index') }}">Home</a>
+            {% if not current_user.is_anonymous %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
         </div>
-        <hr>
+
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <!-- <li>{{ message }}</li>: used to display a "please log in" redundant message-->
             {% endfor %}
         </ul>
         {% endif %}
