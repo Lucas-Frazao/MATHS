@@ -1,25 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="centered-text">Sign In</h1>
+
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>
+
+    </form>
+
+
+    <html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
+        <link href="./css/main.css" rel="stylesheet"/>
+        <title>Document</title></head>
+    <body>
+        <div class="v9_5">
+            <div class="v9_6"></div>
+            <span class="v9_11">Or</span><span class="v9_28">MATHS: </span><span class="v9_13">Trouble Login In?</span><span
+                class="v15_31">Trouble Login In?</span><span class="v9_29">Bridgeland MAO</span><span
+                class="v9_14"> <p>
             {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+            {{ form.username(size=82) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>
+        </p></span><span class="v9_23">  <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p></span><span class="v9_22"><p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p></span><span
+                class="v9_21"> <p>
             {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+            {{ form.password(size=82) }}<br>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
-    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+        </p></span>
+
+        </div>
+    </body>
+    </html>
 {% endblock %}
