@@ -1,11 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-
-    </form>
 
 
     <html>
@@ -16,8 +13,9 @@
     <body>
         <div class="v9_5">
             <div class="v9_6"></div>
-            <span class="v9_11">Or</span><span class="v9_28">MATHS: </span><span class="v9_13">Trouble Login In?</span><span
-                class="v15_31">Trouble Login In?</span><span class="v9_29">Bridgeland MAO</span><span
+            <span class="v9_11">Or</span><span class="v9_28">MATHS </span>
+            <span class="v9_13">  <p> <a href="{{ url_for('troubleLogin') }}">Trouble Login In?</a></p></span>
+            <span class="v9_29">Bridgeland MAO</span><span
                 class="v9_14"> <p>
             {{ form.username.label }}<br>
             {{ form.username(size=82) }}<br>

@@ -15,22 +15,7 @@ from app.forms import RegistrationForm
 @app.route('/index')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'Scan Event '},  # fix this because its redundant
-            'body': 'Scan Event'
-
-        },
-        {
-            'author': {'Service Hours'},  # fix this because its redundant
-            'body': 'Service Hours'
-        },
-        {
-            'author': {'Event Sign-Up'},  # fix this because its redundant
-            'body': 'Event Sign-Up'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -56,6 +41,25 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+
+@app.route('/scanEvent')
+def scanEvent():
+    return render_template('scanEvent.html', title='Home')
+
+
+@app.route('/eventSignup')
+def eventSignup():
+    return render_template('eventSignup.html', title='Home')
+
+
+@app.route('/serviceHours')
+def serviceHours():
+    return render_template('serviceHours.html', title='Home')
+
+
+@app.route('/troubleLogin')
+def troubleLogin():
+    return render_template('troubleLogin.html', title='Home')
 
 @app.route('/register', methods=['GET', 'POST'])  # User registration view function
 def register():
