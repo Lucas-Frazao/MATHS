@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet"/>
@@ -10,8 +13,9 @@
     <div class="v114_17"></div>
     <div class="v114_18"></div>
     <div class="v114_19"></div>
-    <span class="v114_20">Service Hours</span><span class="v114_21">Event Signup</span>
     <div class="v114_22"></div>
-    <span class="v114_23">Scan Event</span></div>
+    </p></span><span class="v114_23">  <p> <a href="{{ url_for('createEvent') }}">Create Event</a></p></span><span ><p></p>
 </body>
 </html>
+{% endblock %}
+
