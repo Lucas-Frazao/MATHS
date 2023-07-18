@@ -19,9 +19,7 @@ This application is designed to run on desktops and iPhones. We need someone (or
 Trello is a managemement tool that allows you to manage tasks with your team. It is simple and easy to use, meaning any new member can learn how to use it.
 ### Figma
 Figma is an interface design tool. It allows the user to easily design and apply the layout for the application. Figma has tutorials that teach the essentials of how to use it. (https://help.figma.com/hc/en-us/sections/4405269443991-Figma-for-Beginners-tutorial-4-parts-)
-### PieCharm
-PieCharm is 
-###### ....................................................................................................................................................................................................................................................................................................................
+....................................................................................................................................................................................................................................................................................................................
 # Helpful Links
 Flask Tutorial - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world                                                                        
 Figma 4-Part Tutorial - https://help.figma.com/hc/en-us/sections/4405269443991-Figma-for-Beginners-tutorial-4-parts-
