@@ -13,6 +13,7 @@ class LoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
+    level = StringField('level', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
@@ -28,3 +29,10 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+
+class CreateEventsForm(FlaskForm):
+    eventName = StringField('Event Name', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+    date = StringField('Date', validators=[DataRequired()])
+    submit = SubmitField('Create Event')
