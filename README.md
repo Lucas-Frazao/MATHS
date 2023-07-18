@@ -1,4 +1,3 @@
-<<<<<<< Gabriel-Frazao-patch-1
 Objective: Create an application that will manage service hours for the Mu Alpha Theta Honor Society.
 
 # What You Need to Know to Join the Project
