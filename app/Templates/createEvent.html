@@ -1,27 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Create Event</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.eventName.label }}<br>
-            {{ form.eventName(size=32) }}<br>
-            {% for error in form.eventName.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.description.label }}<br>
-            {{ form.description(size=64) }}<br>
-            {% for error in form.description.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.date.label }}<br>
-            {{ form.date(size=64) }}<br>
-            {% for error in form.date.errors %}
+            {{ form.post.label }}<br>
+            {{ form.post(cols=32, rows=4) }}<br>
+            {% for error in form.post.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>

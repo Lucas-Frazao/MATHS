@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<h1>Event Sign-Up Page</h1>
-
+{% for post in posts %}
+    <p>
+    Event: <b>{{ post.body }}</b>
+    </p>
+{% endfor %}
 {% endblock %}
-
