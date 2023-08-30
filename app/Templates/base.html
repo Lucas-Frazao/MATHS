@@ -1,5 +1,10 @@
+<!--  The base.html file will be the building block for all other templates. All templates will inherit this file to have the same look and feel: this will make the application tidy  -->
+
 <html>
     <head>
+
+        <!-- The below code will define the style for the entire application, meaning that it creates several "classes" that each template inherits and uses to mold the aesthetics of the application interface  -->
+
         <style>
         * {
           box-sizing: border-box;
@@ -355,32 +360,38 @@
           font-size: 32px;
           text-align: center;
         }
-
-
         </style>
+
+        <!--  The above code must be simplified, most likely use chatGPT  -->
 
 
 
         {% if title %}
-        <title>{{ title }} - MATHS</title>
+        <title>{{ title }} - MATHS</title>  <!--  This sets the title for the home page  -->
         {% else %}
         <title>MATHS</title>
         {% endif %}
     </head>
     <body>
+        <!--  the bellow code is a text container, meaning that it will contain the text and text functions (URLs) for the page -->
+
         <div class="text-container">
             {% if not current_user.is_anonymous %}
             </p></span><span class="v114_24">  <p> <a href="{{ url_for('logout') }}">Logout</a></p></span><span ><p></p>
             {% endif %}
             MATHS:
-            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('index') }}">Home</a> <!--  This is the menu text that will contain the string "home" pointing to the index of the web app. The "index" is also known as the "home-screen" -->
             {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('login') }}">Login</a> <!--  This contains the code for the login screen of the application, it is redundant to display on the login screen as you are already there and thus must not click a button to go somewhere you already are.  -->
             {% else %}
-            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a> <!--  This will be displayed once the user is logged in, it is code that points to the profile for a user  -->
+
+            <a href="{{ url_for('logout') }}">Logout</a> <!--  This will be displayed once the user is logged in, it is code that points to the "logout button"  -->
         {% endif %}
         </div>
+
+        <!--  The bellow code is redundant and will soon be deleted  -->
+
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}

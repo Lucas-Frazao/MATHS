@@ -1,3 +1,5 @@
+<!--  The edit_profile.html file allows a user to change their username and about me information  -->
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -5,6 +7,7 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
+            <!--  defines the shape, size and capacity of the username label  -->
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
@@ -12,12 +15,13 @@
             {% endfor %}
         </p>
         <p>
+            <!--  defines the shape, size and capacity of the about me label  -->
             {{ form.about_me.label }}<br>
             {{ form.about_me(cols=50, rows=4) }}<br>
             {% for error in form.about_me.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit() }}</p> <!--  This defines where the submit button will be located on the page, it does not actually define the form itself as html is a markup language. This is true for all html templates  -->
     </form>
 {% endblock %}

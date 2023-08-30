@@ -1,19 +1,22 @@
+<!--  The events.html file extends base.html menu and displays it atop the screen. Additionally, it points to the createEvent url and displays a list of all the events in the SQL-lite database -->
+
 {% extends "base.html" %}
 
 {% block content %}
 
 <html>
 <head>
+    <!--  This uses the styles define in base.html to position the elements and list in events.html  -->
     <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet"/>
     <link href="./css/main.css" rel="stylesheet"/>
     <title>Document</title></head>
 <body>
-    <a href="{{ url_for('createEvent') }}">Create Event</a></p></span><span ><p></p>
+    <a href="{{ url_for('createEvent') }}">Create Event</a></p></span><span ><p></p> <!--  This displays the String "Create Event" as a link and points to the createEvent page   -->
 </body>
 </html>
 {% for post in posts %}
     <p>
-    Event: <b>{{ post.body }}</b>
+    Event: <b>{{ post.body }}</b>  <!--  This defines the list of events that is displayed at the bottom of the events.html page  -->
     </p>
 {% endfor %}
 {% endblock %}
