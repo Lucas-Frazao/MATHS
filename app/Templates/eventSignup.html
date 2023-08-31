@@ -1,10 +1,11 @@
+<!--  This student page extends base.html's menu and will allow students to sign up for events  -->
 {% extends "base.html" %}
 
 {% block content %}
 
 {% for post in posts %}
     <p>
-    Event: <b>{{ post.body }}</b>
+    Event: <b>{{ post.body }}</b> <!--  Displays list of events available  -->
     </p>
 {% endfor %}
 {% endblock %}

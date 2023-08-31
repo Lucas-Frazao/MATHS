@@ -1,10 +1,12 @@
+<!--  To register a person you need an online form just like the login.html form. Once again, this code defines the aesthetics of the form while the code in forms.py and routes.py define the functionalities.  -->
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Register</h1>
-    <form action="" method="post">
+    <h1>Register</h1> <!--  This displays the title of the form  -->
+    <form action="" method="post"> <!--  This defines the method of communication as "post"  -->
         {{ form.hidden_tag() }}
         <p>
+            <!--  The following code defines and displays the username box  -->
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
@@ -12,6 +14,7 @@
             {% endfor %}
         </p>
         <p>
+            <!--  The following code defines and displays the level box. The level is what a user's position is: a user can be a student, host or teacher -->
             {{ form.level.label }}<br>
             {{ form.level(size=32) }}<br>
             {% for error in form.level.errors %}
@@ -19,6 +22,8 @@
             {% endfor %}
         </p>
         <p>
+            <!--  The following code defines and displays the email box. Also, there is a method defined in forms.py that will validate the formatting of the email and return an error message should it be wrong. Later, I wll make another method that will verify
+              the user's email and identity, not just the simple format.-->
             {{ form.email.label }}<br>
             {{ form.email(size=64) }}<br>
             {% for error in form.email.errors %}
@@ -26,6 +31,7 @@
             {% endfor %}
         </p>
         <p>
+            <!--  The following code defines and displays the password box  -->
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}
@@ -33,12 +39,14 @@
             {% endfor %}
         </p>
         <p>
+            <!--  The following code defines and displays a second password box. This is done to mitigate the possibility of a user typing in their password wrong and, consequently, being locked out of their account. Additionally, the code will compare both
+              passwords and display an error messages should they not match-->
             {{ form.password2.label }}<br>
             {{ form.password2(size=32) }}<br>
             {% for error in form.password2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit() }}</p> <!--  The following code submits the form and hands the information from the form to routes where it will be uploaded to the SQL-lite database  -->
     </form>
 {% endblock %}

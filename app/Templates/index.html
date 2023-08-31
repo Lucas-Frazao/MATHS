@@ -1,19 +1,23 @@
+<!--  This is the student homepage. It extends base.html's menu and displays the links to the service hours and event signup pages.  -->
 {% extends "base.html" %}
 
 {% block content %}
 
 <html>
+<!--  The following code extends base.html's style  -->
 <head>
     <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet"/>
     <link href="./css/main.css" rel="stylesheet"/>
     <title>Document</title></head>
 <body>
+<!--  The following code implements all of the style "classes" defined in base.html.  -->
 <div class="v114_15">
     <div class="v114_16"></div>
     <div class="v114_17"></div>
     <div class="v114_18"></div>
     <div class="v114_19"></div>
     <div class="v114_22"></div>
+    <!--  The following code displays the links to the service hours and event signup pages  -->
     </p></span><span class="v114_20">  <p> <a href="{{ url_for('serviceHours') }}">Service Hours</a></p></span><span ><p></p>
     </p></span><span class="v114_21">  <p> <a href="{{ url_for('eventSignup') }}">Event Signup</a></p></span><span ><p></p>
 </body>

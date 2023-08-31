@@ -1,30 +1,36 @@
+<!--  The following code is for the login page of the application. It defines where the username and password labels are, along with the remember me and sign in buttons. It displays the link that users can use to register and the link for people who
+  are having trouble login in. Additionally, it decorates the page with blue and orange patterns and shapes. Finally, to register a person you need a form, this code builds the aesthetics of the form while the code in forms.py and routes.py define the
+  functionality-->
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="" method="post" novalidate>
+    <form action="" method="post" novalidate> <!--  Defines the post method  -->
         {{ form.hidden_tag() }}
 
 
     <html>
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/> <!--  references the style classes from base.html  -->
         <link href="./css/main.css" rel="stylesheet"/>
         <title>Document</title></head>
     <body>
+    <!--  The following code uses the style classes from base.html  -->
         <div class="v9_5">
             <div class="v9_6"></div>
-            <span class="v9_11">Or</span><span class="v9_28">MATHS </span>
-            <span class="v9_13">  <p> <a href="{{ url_for('troubleLogin') }}">Trouble Login In?</a></p></span>
-            <span class="v9_29">Bridgeland MAO</span><span
+            <span class="v9_11">Or</span><span class="v9_28">MATHS </span> <!--  Displays the MATHS name  -->
+            <span class="v9_13">  <p> <a href="{{ url_for('troubleLogin') }}">Trouble Login In?</a></p></span> <!--  Link for people who cannot access their accounts   -->
+            <span class="v9_29">Bridgeland MAO</span><span <!--  Displays text stating the ownership of the application  -->
                 class="v9_14"> <p>
-            {{ form.username.label }}<br>
+            {{ form.username.label }}<br> <!--  Defines and displays the username box  -->
             {{ form.username(size=82) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
+            <!--  The following code displays the link for people who are new and need to register and displays the remember me button  -->
         </p></span><span class="v9_23">  <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p></span><span class="v9_22"><p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p></span><span
+        <p>{{ form.submit() }}</p></span><span <!--  displays the submit button  -->
                 class="v9_21"> <p>
+            <!--  The following code defines and displays the password box  -->
             {{ form.password.label }}<br>
             {{ form.password(size=82) }}<br>
             {% for error in form.password.errors %}
