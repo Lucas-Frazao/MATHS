@@ -15,21 +15,28 @@
         <title>Document</title></head>
     <body>
     <!--  The following code uses the style classes from base.html  -->
-        <div class="v9_5">
+            <div class="v9_5">
             <div class="v9_6"></div>
-            <span class="v9_11">Or</span><span class="v9_28">MATHS </span> <!--  Displays the MATHS name  -->
+            <span class="v9_11">Or</span>
+                <span class="v9_28">MATHS </span> <!--  Displays the MATHS name  -->
             <span class="v9_13">  <p> <a href="{{ url_for('troubleLogin') }}">Trouble Login In?</a></p></span> <!--  Link for people who cannot access their accounts   -->
             <span class="v9_29">Bridgeland MAO</span><span <!--  Displays text stating the ownership of the application  -->
-                class="v9_14"> <p>
-            {{ form.username.label }}<br> <!--  Defines and displays the username box  -->
+                <span class="v9_14"> <p></span>
+
+             <!--  Defines and displays the username box  -->
+            {{ form.username.label }}<br>
             {{ form.username(size=82) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-            <!--  The following code displays the link for people who are new and need to register and displays the remember me button  -->
+
+
+        <!--  The following code displays the link for people who are new and need to register and displays the remember me button  -->
         </p></span><span class="v9_23">  <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p></span><span class="v9_22"><p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+
         <p>{{ form.submit() }}</p></span><span <!--  displays the submit button  -->
-                class="v9_21"> <p>
+                <span class="v9_21"> <p></span>
+
             <!--  The following code defines and displays the password box  -->
             {{ form.password.label }}<br>
             {{ form.password(size=82) }}<br>

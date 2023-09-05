@@ -1,3 +1,4 @@
+# this is the file that MATHS.py imports to initiate the program, also, MATHS.py is the first file that the cmd runs to initiate the program
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate

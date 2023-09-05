@@ -1,5 +1,5 @@
-from app import app, db
-from app.models import User, Post
+from app import app, db  # imports the database
+from app.models import User, Post # imports the User an Post methods from models
 
 
 @app.shell_context_processor

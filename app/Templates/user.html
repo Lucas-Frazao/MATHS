@@ -1,16 +1,20 @@
+<!--  The bellow code inherits a menu from base.html and will display information about the user on his profile page  -->
 {% extends "base.html" %}
 
 {% block content %}
     <table>
         <tr valign="top">
             <td>
-                <h1>User: {{ user.username }}</h1>
+                <h1>User: {{ user.username }}</h1><!--  Identifies the user  -->
                 {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-                {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
-                <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+                {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}<!-- Displays when the student was last seen on -->
+                <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p> <!-- Displays user's follower count and following count   -->
                 {% if user == current_user %}
-                <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+                <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p> <!--  This link points to a page where the user can edit their profile  -->
                 {% elif not current_user.is_following(user) %}
+
+                <!--  The bellow code defines two methods, the follow and unfollow methods  -->
+
                 <p>
                     <form action="{{ url_for('follow', username=user.username) }}" method="post">
                         {{ form.hidden_tag() }}
