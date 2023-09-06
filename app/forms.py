@@ -22,8 +22,8 @@ class RegistrationForm(FlaskForm): # this is the registration functionality of t
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')]) # this defines the 'repeat password' field
     submit = SubmitField('Register')
-    # the below methods are for validating the username and the email when they are typed into the according fields
 
+    # the below methods are for validating the username and the email when they are typed into the according fields
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
