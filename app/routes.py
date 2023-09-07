@@ -31,9 +31,9 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:  # if the user is logged in already then there is no reason for them to login again, thus, they will be redirected to their assigned index - On a side note, I have to fix the code below because right now it redirects ANY user
-        return redirect(url_for('index')) # to the student index
-    form = LoginForm() # this assigns the variable form to hold the login form
-    if form.validate_on_submit(): # if the information goes through properly when the user clicks the submit button then...
+        return redirect(url_for('index'))  # to the student index
+    form = LoginForm()  # this assigns the variable form to hold the login form
+    if form.validate_on_submit():  # if the information goes through properly when the user clicks the submit button then...
         user = User.query.filter_by(username=form.username.data).first()  # finds the user based on username
         if user is None or not user.check_password(
                 form.password.data):  # if the username is found it checks the password
@@ -98,87 +98,89 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()  # assigns the variable form to the registration form
     if form.validate_on_submit():  # if all information goes through properly when the user hits the submit button then...
-        user = User(username=form.username.data, email=form.email.data, level=form.level.data)  # gives the user's username, email and level variables the data retrieved from the form (form.username.data, form.email.data, form.level.data)
+        user = User(username=form.username.data, email=form.email.data,
+                    level=form.level.data)  # gives the user's username, email and level variables the data retrieved from the form (form.username.data, form.email.data, form.level.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()  # the previous three lines of code commit the data retrieved from the web form to the SQL-lite database
         flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))  # sends the user back to the login so he can login using his newly-created account
+        return redirect(
+            url_for('login'))  # sends the user back to the login so he can login using his newly-created account
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/createEvent', methods=['GET', 'POST'])
-@login_required
+@app.route('/', methods=['GET', 'POST'])  # defines the method of communication as get and post.
+@app.route('/createEvent', methods=['GET', 'POST'])  # routes the createEvent page
+@login_required  # requires login
 def createEvent():
-    form = PostForm()
-    if form.validate_on_submit():
+    form = PostForm()  # sets form equal to post form
+    if form.validate_on_submit():  # if all information is valid upon submit then...
         post = Post(body=form.post.data, author=current_user)
         db.session.add(post)
-        db.session.commit()
-        flash('Your post is now live!')
-        return redirect(url_for('TeacherIndex'))
-    posts = current_user.followed_posts().all()
+        db.session.commit() # the above three lines get all data from the forms and commit it to the database
+        flash('Your post is now live!')  # message that lets user know their post is now live
+        return redirect(url_for('TeacherIndex'))  # user is sent back to the teacher index, in this case only teachers can create events so their is no need to route the user back to any other homepage except for the teacher homepage
+    posts = current_user.followed_posts().all()  # gets all posts written by people the user follows
     return render_template("createEvent.html", title='Home Page', form=form, posts=posts)
 
 
-@app.route('/events', methods=['GET', 'POST'])
+@app.route('/events', methods=['GET', 'POST'])  # defines get post as communication method and routes events
 def events():
-    posts = current_user.followed_posts().all()
+    posts = current_user.followed_posts().all()  # returns all posts written by people who the user follows
     return render_template("events.html", title='Home Page', posts=posts)
 
 
-@app.route('/eventSignup', methods=['GET', 'POST'])
+@app.route('/eventSignup', methods=['GET', 'POST'])  # defines get post as communication and routes event signup
 def eventSignup():
-    posts = current_user.followed_posts().all()
+    posts = current_user.followed_posts().all()  # returns all posts written by people who the user follows
     return render_template("eventSignup.html", title='Home Page', posts=posts)
 
 
-@app.route('/follow/<username>', methods=['POST'])
+@app.route('/follow/<username>', methods=['POST']) # defines post as the method of communication and routes the follow function
 @login_required
 def follow(username):
     form = EmptyForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=username).first()
+    if form.validate_on_submit():  # if the form delivers all data properly then...
+        user = User.query.filter_by(username=username).first()  # filters by username given
         if user is None:
-            flash('User {} not found.'.format(username))
-            return redirect(url_for('index'))
+            flash('User {} not found.'.format(username))  # if user is not found...
+            return redirect(url_for('index'))  # sends user back to index
         if user == current_user:
-            flash('You cannot follow yourself!')
+            flash('You cannot follow yourself!')  # prevents people from following themselves
             return redirect(url_for('user', username=username))
         current_user.follow(user)
-        db.session.commit()
+        db.session.commit()  # follows a user
         flash('You are following {}!'.format(username))
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
 
 
-@app.route('/unfollow/<username>', methods=['POST'])
-@login_required
+@app.route('/unfollow/<username>', methods=['POST'])  # routes the unfollow function and sets the communication to post method only
+@login_required  # must have logged in to unfollow someone
 def unfollow(username):
     form = EmptyForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=username).first()
-        if user is None:
+    if form.validate_on_submit():  # if form submits proper data
+        user = User.query.filter_by(username=username).first()  # filters user by username
+        if user is None:  # if username is not found then...
             flash('User {} not found.'.format(username))
             return redirect(url_for('index'))
-        if user == current_user:
+        if user == current_user:  # prevents user from following themselves
             flash('You cannot unfollow yourself!')
             return redirect(url_for('user', username=username))
-        current_user.unfollow(user)
+        current_user.unfollow(user)  # unfollows user and commits it
         db.session.commit()
-        flash('You are not following {}.'.format(username))
+        flash('You are not following {}.'.format(username))  # tells user who they just followed
         return redirect(url_for('user', username=username))
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('index'))  # redirect to index
 
 
-@app.route('/user/<username>')
-@login_required
+@app.route('/user/<username>')  # routes the username function
+@login_required  # requires a login
 def user(username):
-    user = User.query.filter_by(username=username).first_or_404()
-    posts = [
+    user = User.query.filter_by(username=username).first_or_404()  # filters by username
+    posts = [  # defines post's structure
         {'author': user, 'body': 'Test post #1'},
         {'author': user, 'body': 'Test post #2'}
     ]
@@ -193,17 +195,17 @@ def before_request():
         db.session.commit()
 
 
-@app.route('/edit_profile', methods=['GET', 'POST'])
-@login_required
+@app.route('/edit_profile', methods=['GET', 'POST'])  # routes the edit profile page and define communication as get post
+@login_required  # requires a login
 def edit_profile():
     form = EditProfileForm()
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.about_me = form.about_me.data
-        db.session.commit()
-        flash('Your changes have been saved.')
-        return redirect(url_for('edit_profile'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
+    if form.validate_on_submit():  # if form is properly submitted
+        current_user.username = form.username.data  # sets the username to the username from the form
+        current_user.about_me = form.about_me.data  # sets the user's about me to the about me from the form
+        db.session.commit()  # commits data to database
+        flash('Your changes have been saved.')  # tells users that their information has been saved
+        return redirect(url_for('edit_profile'))  # goes back to the edit profile page
+    elif request.method == 'GET':  # sets the request method to get
+        form.username.data = current_user.username  # sets the username data to the current username
+        form.about_me.data = current_user.about_me  # sets the about me data to the current about me. 
     return render_template('edit_profile.html', title='Edit Profile', form=form)
