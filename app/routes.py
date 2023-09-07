@@ -207,5 +207,5 @@ def edit_profile():
         return redirect(url_for('edit_profile'))  # goes back to the edit profile page
     elif request.method == 'GET':  # sets the request method to get
         form.username.data = current_user.username  # sets the username data to the current username
-        form.about_me.data = current_user.about_me  # sets the about me data to the current about me. 
+        form.about_me.data = current_user.about_me  # sets the about me data to the current about me.
     return render_template('edit_profile.html', title='Edit Profile', form=form)
