@@ -1,11 +1,19 @@
-<!--  This student page extends base.html's menu and will allow students to sign up for events  -->
+<!--  The events.html file extends base.html menu and displays it atop the screen. Additionally, it points to the createEvent url and displays a list of all the events in the SQL-lite database -->
+
 {% extends "base.html" %}
 
 {% block content %}
 
+<html>
+<head>
+    <!--  This uses the styles define in base.html to position the elements and list in events.html  -->
+    <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet"/>
+    <link href="./css/main.css" rel="stylesheet"/>
+    <title>Document</title></head>
+</html>
 {% for post in posts %}
     <p>
-    Event: <b>{{ post.body }}</b> <!--  Displays list of events available  -->
+    Event: <b>{{ post.body }}</b>  <!--  This defines the list of events that is displayed at the bottom of the events.html page  -->
     </p>
 {% endfor %}
 {% endblock %}

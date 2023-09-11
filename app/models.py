@@ -53,6 +53,10 @@ class User(UserMixin, db.Model): # this is the user functionality, a user has an
         followed = Post.query.filter_by(user_id=self.id)
         return followed.order_by(Post.timestamp.desc())
 
+    @staticmethod
+    def all_posts(self):
+        return Post.query.filter_by(self.id)
+
 
 @login.user_loader  # method gives an id that Flask-Login uses to keep track of User session status
 def load_user(id):
