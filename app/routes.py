@@ -117,26 +117,28 @@ def createEvent():
     if form.validate_on_submit():  # if all information is valid upon submit then...
         post = Post(body=form.post.data, author=current_user)
         db.session.add(post)
-        db.session.commit() # the above three lines get all data from the forms and commit it to the database
+        db.session.commit()  # the above three lines get all data from the forms and commit it to the database
         flash('Your post is now live!')  # message that lets user know their post is now live
-        return redirect(url_for('events'))  # user is sent back to the teacher index, in this case only teachers can create events so their is no need to route the user back to any other homepage except for the teacher homepage
+        return redirect(url_for(
+            'events'))  # user is sent back to the teacher index, in this case only teachers can create events so their is no need to route the user back to any other homepage except for the teacher homepage
     posts = current_user.followed_posts().all()  # gets all posts written by people the user follows
     return render_template("createEvent.html", title='Home Page', form=form, posts=posts)
 
 
 @app.route('/events', methods=['GET', 'POST'])  # defines get post as communication method and routes events
 def events():
-    posts = current_user.followed_posts().all()  # returns all posts written by people who the user follows
+    posts = current_user.all_posts().all()  # returns all posts written by people who the user follows
     return render_template("events.html", title='Home Page', posts=posts)
 
 
 @app.route('/eventSignup', methods=['GET', 'POST'])  # defines get post as communication and routes event signup
 def eventSignup():
-    posts = current_user.followed_posts().all()  # returns all posts written by people who the user follows
+    posts = current_user.all_posts().all()  # returns all posts written by people who the user follows
     return render_template("eventSignup.html", title='Home Page', posts=posts)
 
 
-@app.route('/follow/<username>', methods=['POST']) # defines post as the method of communication and routes the follow function
+@app.route('/follow/<username>',
+           methods=['POST'])  # defines post as the method of communication and routes the follow function
 @login_required
 def follow(username):
     form = EmptyForm()
@@ -156,7 +158,8 @@ def follow(username):
         return redirect(url_for('index'))
 
 
-@app.route('/unfollow/<username>', methods=['POST'])  # routes the unfollow function and sets the communication to post method only
+@app.route('/unfollow/<username>',
+           methods=['POST'])  # routes the unfollow function and sets the communication to post method only
 @login_required  # must have logged in to unfollow someone
 def unfollow(username):
     form = EmptyForm()
@@ -195,7 +198,8 @@ def before_request():
         db.session.commit()
 
 
-@app.route('/edit_profile', methods=['GET', 'POST'])  # routes the edit profile page and define communication as get post
+@app.route('/edit_profile',
+           methods=['GET', 'POST'])  # routes the edit profile page and define communication as get post
 @login_required  # requires a login
 def edit_profile():
     form = EditProfileForm()
