@@ -121,7 +121,7 @@ def createEvent():
         flash('Your post is now live!')  # message that lets user know their post is now live
         return redirect(url_for(
             'events'))  # user is sent back to the teacher index, in this case only teachers can create events so their is no need to route the user back to any other homepage except for the teacher homepage
-    posts = current_user.followed_posts().all()  # gets all posts written by people the user follows
+    posts = current_user.all_posts()  # gets all posts written by people the user follows
     return render_template("createEvent.html", title='Home Page', form=form, posts=posts)
 
 
