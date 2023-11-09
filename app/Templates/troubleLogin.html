@@ -1,10 +1,13 @@
-<!--  This page will store the html code for the trouble login in page. It will display a box for recovery email and password  -->
 {% extends "base.html" %}
 
 {% block content %}
 
-<!--  Right now, however, it only displays the following label  -->
 <h1>Trouble Login In Page</h1>
 
-{% endblock %}
+<form action="/trouble-login" method="post" class="login-form">
+  <input type="email" name="recovery_email" class="form-control" placeholder="Recovery email address">
+  <input type="password" name="password" class="form-control" placeholder="New password">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
+{% endblock %}

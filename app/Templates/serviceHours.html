@@ -1,9 +1,30 @@
-<!--  This file will inherit the menu from base.html and will be on the student side of the application. It will display the student's service hours from the database  -->
 {% extends "base.html" %}
 
 {% block content %}
 
 <h1>Service Hours Page</h1>
 
-{% endblock %}
+<button type="submit" name="add_service_hour">Add New Service Hour</button>
 
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Activity</th>
+      <th>Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for service_hour in student_service_hours %}
+      <tr>
+        <td>{{ service_hour.date }}</td>
+        <td>{{ service_hour.activity }}</td>
+        <td>{{ service_hour.hours }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<button type="submit" name="export_service_hours">Export Service Hours to PDF</button>
+
+{% endblock %}

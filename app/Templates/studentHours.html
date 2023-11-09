@@ -1,10 +1,30 @@
-<!--  This will inherit the menu from base.html and will be on the teacher side of the application. It will display all of the student hours from the database along with the students' IDs  -->
 {% extends "base.html" %}
 
 {% block content %}
 
 <h1>Student Hours Page</h1>
 
-{% endblock %}
+<input type="text" name="search" placeholder="Search for student...">
 
-html>
+<table>
+  <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>Student Name</th>
+      <th>Service Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in students %}
+      <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.service_hours }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<button type="submit" name="export" value="csv">Export to CSV</button>
+
+{% endblock %}

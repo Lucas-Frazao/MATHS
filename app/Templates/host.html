@@ -1,9 +1,15 @@
-<!--  This is the host's homepage. It extends base.html's menu and will display the host's functions  -->
 {% extends "base.html" %}
 
 {% block content %}
 
-<h1>Host Page</h1> <!--  This is currently the only thing written on the page   -->
+<h1>Host Page</h1>
+
+<h2>Host Functions</h2>
+
+<ul>
+  <li><a href="/scan-student-id-badge">Scan Student ID Badge</a> - Scan student ID badges to check students in and out of events.</li>
+  <li><a href="/update-student-service-hours">Update Student Service Hours</a> - Update student service hours for events that students have attended.</li>
+  <li><a href="/view-student-service-hour-history">View Student Service Hour History</a> - View a student's service hour history to see which events they have attended and how many hours they have earned.</li>
+</ul>
 
 {% endblock %}
-
