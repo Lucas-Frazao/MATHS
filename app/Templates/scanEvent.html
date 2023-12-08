@@ -1,34 +1,22 @@
+<!--  The events.html file extends base.html menu and displays it atop the screen. Additionally, it points to the createEvent url and displays a list of all the events in the SQL-lite database -->
+
 {% extends "base.html" %}
 
 {% block content %}
+
 <html>
-<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet"/> <!--  references the style classes from base.html  -->
-        <link href="./css/main.css" rel="stylesheet"/>
-        <title>Document</title></head>
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet"/> <!-- This inherits the classes define in base.html  -->
+    <!--  This uses the styles define in base.html to position the elements and list in events.html  -->
+    <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet"/>
     <link href="./css/main.css" rel="stylesheet"/>
     <title>Document</title></head>
 <body>
-<div class="v9_5">
-            <div class="v9_6"></div>
-            <span class="v9_11">Or</span>
-                <span class="v9_28">Scan Event Page </span> <!--  Displays the MATHS name  -->
-    <div class="v114_15"> <!-- The following code implements the classes defined in base.html and stylizes the teacher's homepage  -->
-    <div class="v114_16"></div>
-    <div class="v114_17"></div>
-    <div class="v114_18"></div>
-    <div class="v114_19"></div>
-    <div class="v114_22"></div>
-
-</p></span><span class="v114_20">  <p> <a href="{{ url_for('events') }}">Pi day social </a></p></span><span ><p></p>
-
-</p></span><span class="v114_21">  <p> <a href="{{ url_for('events') }}">Math Jeopardy </a></p></span><span ><p></p>
-
- </p></span><span class="v114_23">  <p> <a href="{{ url_for('events') }}">Math Bingo </a></p></span><span ><p></p>
-
-
-<a href="#">Register for events</a>
+    <a href="{{ url_for('createEvent') }}">Create Event</a></p></span><span ><p></p> <!--  This displays the String "Create Event" as a link and points to the createEvent page   -->
 </body>
 </html>
+{% for post in posts %}
+    <p>
+    Event: <b>{{ post.body }}</b>  <!--  This defines the list of events that is displayed at the bottom of the events.html page  -->
+    </p>
+{% endfor %}
 {% endblock %}
