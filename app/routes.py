@@ -17,6 +17,7 @@ from app.forms import PostForm
 from app.forms import EmptyForm
 from datetime import datetime
 from app.forms import EditProfileForm
+import sqlite3
 
 
 # The code below routes the index page for the students
@@ -214,20 +215,17 @@ def edit_profile():
         form.about_me.data = current_user.about_me  # sets the about me data to the current about me.
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
-"""
-@app.route('/edit_profile',
-           methods=['GET', 'POST'])  # routes the edit profile page and define communication as get post
-@login_required  # requires a login
-def edit_profile():
-    form = EditProfileForm()
-    if form.validate_on_submit():  # if form is properly submitted
-        current_user.username = form.username.data  # sets the username to the username from the form
-        current_user.about_me = form.about_me.data  # sets the user's about me to the about me from the form
-        db.session.commit()  # commits data to database
-        flash('Your changes have been saved.')  # tells users that their information has been saved
-        return redirect(url_for('edit_profile'))  # goes back to the edit profile page
-    elif request.method == 'GET':  # sets the request method to get
-        form.username.data = current_user.username  # sets the username data to the current username
-        form.about_me.data = current_user.about_me  # sets the about me data to the current about me.
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
-"""
+
+
+@app.route("/delete-event/<int:event_id>", methods=['POST'])
+def delete_event(event_id):
+    # SQL query to delete the event
+    query = "DELETE FROM post WHERE id = ?"
+    # Connect to the database and execute the query
+    conn = sqlite3.connect('mydatabase.db')
+    cur = conn.cursor()
+    cur.execute(query, (event_id,))
+    conn.commit()
+    conn.close()
+    # Redirect to the page with the list of events
+    return redirect(url_for('events'))
